@@ -129,6 +129,10 @@ class HomePage {
         return $('#mainContent > div.hl-cat-nav > ul > li:nth-child(5) > div.hl-cat-nav__flyout > div.hl-cat-nav__sub-cats > nav:nth-child(1) > ul').$$('li a')
     }
 
+    get collectiblesMenuPopularCategoriesLinks() {
+        return $('#mainContent > div.hl-cat-nav > ul > li:nth-child(5) > div.hl-cat-nav__flyout > div.hl-cat-nav__sub-cats > nav:nth-child(2) > ul').$$('li a')
+    }
+
     async clickOnSignInLink() {
         this.signInLink.click()
     }

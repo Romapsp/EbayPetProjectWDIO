@@ -155,6 +155,15 @@ describe('Ebay HomePage', () => {
         console.log("Actual links: ", actualCollectiblesLinks)
         await expect(expectedCollectiblesLinks).toEqual(actualCollectiblesLinks)
     })
+    it ('displays 8 links in "Popular Categories" in Collectibles Menu', async() => {
+        await expect(HomePage.collectiblesMenuBtn).toBeDisplayed()
+        await HomePage.hoverOnCollectiblesMenuBtn()
+        const expectedCollectiblesLinks = ['Art Paintings', 'Morgan Dollars', 'Funko Pop!', 'Disneyana', 'Music Memorabilia', 'Baseball Cards', 'NFTs', 'Stamps']
+        const actualCollectiblesLinks = await HomePage.collectiblesMenuPopularCategoriesLinks.map((collectiblesMenuBtn) => collectiblesMenuBtn.getText())
+        console.log("Expected links: ", expectedCollectiblesLinks)
+        console.log("Actual links: ", actualCollectiblesLinks)
+        await expect(expectedCollectiblesLinks).toEqual(actualCollectiblesLinks)
+    })
 }) 
 
 
