@@ -146,7 +146,15 @@ describe('Ebay HomePage', () => {
         await HomePage.clickOnElectronicsImage()
         await expect(browser).toHaveUrlContaining('Electronics')
     })
-    
+    it ('displays 8 links in "Top Categories" in Collectibles Menu', async() => {
+        await expect(HomePage.collectiblesMenuBtn).toBeDisplayed()
+        await HomePage.hoverOnCollectiblesMenuBtn()
+        const expectedCollectiblesLinks = ['Sports Memorabilia, Fan Shop & Sports Cards', 'Sports Trading Cards', 'Coins & Paper Money', 'Antiques', 'Bullion', 'Art', 'Collectible Card Games', 'Comics']
+        const actualCollectiblesLinks = await HomePage.collectiblesMenuTopCategoriesLinks.map((collectiblesMenuBtn) => collectiblesMenuBtn.getText())
+        console.log("Expected links: ", expectedCollectiblesLinks)
+        console.log("Actual links: ", actualCollectiblesLinks)
+        await expect(expectedCollectiblesLinks).toEqual(actualCollectiblesLinks)
+    })
 }) 
 
 

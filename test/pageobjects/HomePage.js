@@ -121,6 +121,14 @@ class HomePage {
         return $('#mainContent > div.hl-cat-nav > ul > li:nth-child(4) > div.hl-cat-nav__flyout > div.hl-cat-nav__sub-cats > nav:nth-child(2) > ul').$$('li a')
     }
 
+    get collectiblesMenuBtn() {
+        return $('#mainContent > div.hl-cat-nav > ul > li:nth-child(5) > a')
+    }
+
+    get collectiblesMenuTopCategoriesLinks() {
+        return $('#mainContent > div.hl-cat-nav > ul > li:nth-child(5) > div.hl-cat-nav__flyout > div.hl-cat-nav__sub-cats > nav:nth-child(1) > ul').$$('li a')
+    }
+
     async clickOnSignInLink() {
         this.signInLink.click()
     }
@@ -223,6 +231,11 @@ class HomePage {
     async clickOnElectronicsImage() {
         await this.ElectronicsImage.waitForExist()
         await this.ElectronicsImage.click()
+    }
+
+    async hoverOnCollectiblesMenuBtn() {
+        await this.collectiblesMenuBtn.moveTo()
+        await browser.pause(500)
     }
 }
 
