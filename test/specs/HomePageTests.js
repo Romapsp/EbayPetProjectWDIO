@@ -163,6 +163,7 @@ describe('Ebay HomePage', () => {
         console.log("Expected links: ", expectedCollectiblesLinks)
         console.log("Actual links: ", actualCollectiblesLinks)
         await expect(expectedCollectiblesLinks).toEqual(actualCollectiblesLinks)
+        
     })
 }) 
 
