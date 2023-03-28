@@ -241,6 +241,11 @@ class HomePage {
         await this.collectiblesMenuBtn.moveTo()
         await browser.pause(500)
     }
+
+    async openCollectiblesLink() {
+        await this.collectiblesMenuTopCategoriesLinks[7].click()
+
+    }
 }
 
 export default new HomePage()
