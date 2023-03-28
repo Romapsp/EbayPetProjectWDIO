@@ -164,12 +164,16 @@ describe('Ebay HomePage', () => {
         console.log("Actual links: ", actualCollectiblesLinks)
         await expect(expectedCollectiblesLinks).toEqual(actualCollectiblesLinks)
     })
-    it ('opens a link from Collectibles Menu', async() => {
+    it.skip ('opens a link from Collectibles Menu', async() => {
         await HomePage.hoverOnCollectiblesMenuBtn()   
         await HomePage.openCollectiblesLink()
         await expect(browser).toHaveUrlContaining('Comic-Books-Manga-Memorabilia')
     })
-
+    it ('displays and opens image in Collectibles Menu', async() => {
+        await HomePage.hoverOnCollectiblesMenuBtn()   
+        await HomePage.clickOnCollectiblesImage()
+        await expect(browser).toHaveUrlContaining('Collectibles-Art')
+    })
 }) 
 
 

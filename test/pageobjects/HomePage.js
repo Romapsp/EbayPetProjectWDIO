@@ -113,7 +113,7 @@ class HomePage {
         return $('#mainContent > div.hl-cat-nav > ul > li:nth-child(4) > div.hl-cat-nav__flyout > div.hl-cat-nav__sub-cats > nav:nth-child(1) > ul').$$('li a')
     }
 
-    get ElectronicsImage() {
+    get electronicsImage() {
         return $('#mainContent > div.hl-cat-nav > ul > li:nth-child(4) > div.hl-cat-nav__flyout > div.hl-cat-nav__rtm > div > map > area')
     }
 
@@ -131,6 +131,10 @@ class HomePage {
 
     get collectiblesMenuPopularCategoriesLinks() {
         return $('#mainContent > div.hl-cat-nav > ul > li:nth-child(5) > div.hl-cat-nav__flyout > div.hl-cat-nav__sub-cats > nav:nth-child(2) > ul').$$('li a')
+    }
+
+    get collectiblesImage() {
+        return $('#mainContent > div.hl-cat-nav > ul > li:nth-child(5) > div.hl-cat-nav__flyout > div.hl-cat-nav__rtm > div > map > area')
     }
 
     async clickOnSignInLink() {
@@ -233,8 +237,8 @@ class HomePage {
     }
 
     async clickOnElectronicsImage() {
-        await this.ElectronicsImage.waitForExist()
-        await this.ElectronicsImage.click()
+        await this.electronicsImage.waitForExist()
+        await this.electronicsImage.click()
     }
 
     async hoverOnCollectiblesMenuBtn() {
@@ -244,7 +248,11 @@ class HomePage {
 
     async openCollectiblesLink() {
         await this.collectiblesMenuTopCategoriesLinks[7].click()
+    }
 
+    async clickOnCollectiblesImage() {
+        await this.collectiblesImage.waitForExist()
+        await this.collectiblesImage.click()
     }
 }
 
