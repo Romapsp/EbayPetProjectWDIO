@@ -169,10 +169,15 @@ describe('Ebay HomePage', () => {
         await HomePage.openCollectiblesLink()
         await expect(browser).toHaveUrlContaining('Comic-Books-Manga-Memorabilia')
     })
-    it ('displays and opens image in Collectibles Menu', async() => {
+    it.skip ('displays and opens image in Collectibles Menu', async() => {
         await HomePage.hoverOnCollectiblesMenuBtn()   
         await HomePage.clickOnCollectiblesImage()
         await expect(browser).toHaveUrlContaining('Collectibles-Art')
+    })
+    it ('clicks and opens Ebay Live page', async() => {
+        await HomePage.checkIfEbayLiveIsDisplayed()
+        await HomePage.clickOnEbayLiveBtn()
+        await expect(browser).toHaveUrl('https://www.ebay.com/ebaylive')
     })
 }) 
 

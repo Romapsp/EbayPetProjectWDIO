@@ -137,6 +137,14 @@ class HomePage {
         return $('#mainContent > div.hl-cat-nav > ul > li:nth-child(5) > div.hl-cat-nav__flyout > div.hl-cat-nav__rtm > div > map > area')
     }
 
+    get ebayLiveBtn() {
+        return $('#mainContent > div.hl-cat-nav > ul > li.hl-cat-nav__js-tab.hl-cat-nav__no-sub > a')
+    }
+
+    get headerMoreMenu() {
+        return $('#mainContent > div.hl-cat-nav > ul > li.hl-cat-nav__more.hl-cat-nav__js-tab.hl-cat-nav__js-more-show > span')
+    }
+
     async clickOnSignInLink() {
         this.signInLink.click()
     }
@@ -253,6 +261,22 @@ class HomePage {
     async clickOnCollectiblesImage() {
         await this.collectiblesImage.waitForExist()
         await this.collectiblesImage.click()
+    }
+
+    async checkIfEbayLiveIsDisplayed() {
+        await browser.pause(1000)
+        if (await this.ebayLiveBtn.isDisplayed()){
+            await browser.pause(1500)
+            await expect(this.ebayLiveBtn).toBeDisplayed()
+        } else {
+            await this.headerMoreMenu.moveTo()
+            await browser.pause(1500)
+            await expect(this.ebayLiveBtn).toBeDisplayed()
+        }
+    }
+
+    async clickOnEbayLiveBtn() {
+        await this.ebayLiveBtn.click()
     }
 }
 
