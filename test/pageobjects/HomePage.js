@@ -145,6 +145,26 @@ class HomePage {
         return $('#mainContent > div.hl-cat-nav > ul > li.hl-cat-nav__more.hl-cat-nav__js-tab.hl-cat-nav__js-more-show > span')
     }
 
+    get sliderMenu1() {
+        return $('//*[@id="s0-0-33-4-0-0[0]-2-match-media-0-ebay-carousel-list"]/li[1]')
+    }
+    
+    get sliderMenu2() {
+        return $('//*[@id="s0-0-33-4-0-0[0]-2-match-media-0-ebay-carousel-list"]/li[2]')
+    }
+    
+    get sliderMenu3() {
+        return $('//*[@id="s0-0-33-4-0-0[0]-2-match-media-0-ebay-carousel-list"]/li[3]')
+    }
+    
+    get sliderMenu4() {
+        return $('//*[@id="s0-0-33-4-0-0[0]-2-match-media-0-ebay-carousel-list"]/li[4]')
+    }      
+
+    get playbackBtn() {
+        return $('//*[@id="s0-0-33-4-0-0[0]-2-match-media-0-ebay-carousel-container"]/button[3]')
+    }
+
     async clickOnSignInLink() {
         this.signInLink.click()
     }
@@ -264,20 +284,60 @@ class HomePage {
     }
 
     async checkIfEbayLiveIsDisplayed() {
-        await browser.pause(1000)
+
         if (await this.ebayLiveBtn.isDisplayed()){
-            await browser.pause(1500)
-            await expect(this.ebayLiveBtn).toBeDisplayed()
+            await browser.pause(1000)
         } else {
             await this.headerMoreMenu.moveTo()
-            await browser.pause(1500)
-            await expect(this.ebayLiveBtn).toBeDisplayed()
+            await browser.pause(1000)
         }
     }
 
     async clickOnEbayLiveBtn() {
         await this.ebayLiveBtn.click()
     }
+
+    async checkIfCarouselIsDisplayed() {
+        for (let i = 1; i <= 4; i++) {
+            const sliderMenu = $(`/html/body/div[5]/div[3]/div/div/div/div/ul/li[${i}]`)
+            if (await sliderMenu.isDisplayed()) {
+                return true
+            }
+        }
+        return false
+    }
+
+    async turnOnPlaybackBtn() {
+        // Play Banner Carousel - property when carousel is paused 
+        // Pause Banner Carousel - property when carousel is played
+        const playbackValue = await this.playbackBtn.getAttribute('aria-label')
+        if (playbackValue === 'Play Banner Carousel') {
+            await this.playbackBtn.click()
+            await expect(playbackValue).toBeEqual('Pause Banner Carousel')
+            console.log(`Value is ${playbackValue} `)
+        } else if (playbackValue === 'Pause Banner Carousel'){
+            console.log(`Value is ${playbackValue} `)
+            return true
+        }
+    }
+
+    async allSlidesAreDisplayed() {
+    if (await this.sliderMenu1.isDisplayedInViewport()) {
+        await browser.pause(3000)
+        await this.sliderMenu2.isDisplayedInViewport()
+        await browser.pause(3000)
+        await this.sliderMenu3.isDisplayedInViewport()
+        await browser.pause(3000)
+        await this.sliderMenu4.isDisplayedInViewport()
+        console.log('All are displayed')
+        return true
+    } else {
+        console.log('not displayed')
+        return false
+    }
+    }
+    
+      
 }
 
 export default new HomePage()

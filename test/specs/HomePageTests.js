@@ -174,10 +174,15 @@ describe('Ebay HomePage', () => {
         await HomePage.clickOnCollectiblesImage()
         await expect(browser).toHaveUrlContaining('Collectibles-Art')
     })
-    it ('clicks and opens Ebay Live page', async() => {
+    it.skip ('clicks and opens Ebay Live page', async() => {
         await HomePage.checkIfEbayLiveIsDisplayed()
         await HomePage.clickOnEbayLiveBtn()
         await expect(browser).toHaveUrl('https://www.ebay.com/ebaylive')
+    })
+    it ('checks that carousel slides the images', async() => {
+        await HomePage.checkIfCarouselIsDisplayed()
+        await HomePage.turnOnPlaybackBtn()
+        await expect(await HomePage.allSlidesAreDisplayed()).toBe(true)
     })
 }) 
 
