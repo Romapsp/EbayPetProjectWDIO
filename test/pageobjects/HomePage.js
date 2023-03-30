@@ -322,20 +322,24 @@ class HomePage {
     }
 
     async allSlidesAreDisplayed() {
-    if (await this.sliderMenu1.isDisplayedInViewport()) {
-        await browser.pause(3000)
-        await this.sliderMenu2.isDisplayedInViewport()
-        await browser.pause(3000)
-        await this.sliderMenu3.isDisplayedInViewport()
-        await browser.pause(3000)
-        await this.sliderMenu4.isDisplayedInViewport()
-        console.log('All are displayed')
+        const slides = [this.sliderMenu1, this.sliderMenu2, this.sliderMenu3, this.sliderMenu4];
+        for (let i = 0; i < slides.length; i++) {
+          const slide = slides[i]
+          await slide.waitForDisplayed({timeout: 5000})
+          const isDisplayedInViewport = await slide.isDisplayedInViewport()
+          if (!isDisplayedInViewport) {
+            console.log(`Slide ${i + 1} is not displayed in viewport`)
+            return false
+          }
+          console.log(`Slide ${i + 1} is displayed in viewport`)
+          if (i < slides.length - 1) {
+            await browser.pause(3000)
+          }
+        }
+        console.log('All slides are displayed in viewport')
         return true
-    } else {
-        console.log('not displayed')
-        return false
-    }
-    }
+      }
+      
     
       
 }
