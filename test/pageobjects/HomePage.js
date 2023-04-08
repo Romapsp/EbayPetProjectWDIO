@@ -322,7 +322,7 @@ class HomePage {
     }
 
     async allSlidesAreDisplayed() {
-        const slides = [this.sliderMenu1, this.sliderMenu2, this.sliderMenu3, this.sliderMenu4];
+        const slides = [this.sliderMenu1, this.sliderMenu2, this.sliderMenu3, this.sliderMenu4]
         for (let i = 0; i < slides.length; i++) {
           const slide = slides[i]
           await slide.waitForDisplayed({timeout: 5000})
